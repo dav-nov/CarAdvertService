@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAdvertService", "CarAdvertService\CarAdvertService.csproj", "{AF10E3B6-E799-4431-8E44-F54A146DE9DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAdvertService.Tests", "CarAdvertService.Tests\CarAdvertService.Tests.csproj", "{757329EA-E5E7-4E44-9A0E-93CE44EAA56B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF10E3B6-E799-4431-8E44-F54A146DE9DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF10E3B6-E799-4431-8E44-F54A146DE9DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF10E3B6-E799-4431-8E44-F54A146DE9DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF10E3B6-E799-4431-8E44-F54A146DE9DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{757329EA-E5E7-4E44-9A0E-93CE44EAA56B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757329EA-E5E7-4E44-9A0E-93CE44EAA56B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757329EA-E5E7-4E44-9A0E-93CE44EAA56B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757329EA-E5E7-4E44-9A0E-93CE44EAA56B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5FD4552D-7FF1-48CD-BE09-E45AB401DECB}
+	EndGlobalSection
+EndGlobal
