@@ -68,5 +68,71 @@ namespace CarAdvertService.Controllers
 
             return View(advert);
         }
+
+        public ActionResult Edit(int id)
+        {
+            CarAdvertViewModel advert = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:63915/api/");
+                //HTTP GET
+                var responseTask = client.GetAsync("caradvert?id=" + id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<CarAdvertViewModel>();
+                    readTask.Wait();
+
+                    advert = readTask.Result;
+                }
+            }
+
+            return View(advert);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(CarAdvertViewModel advert)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:63915/api/");
+
+                //HTTP POST
+                var putTask = client.PutAsJsonAsync<CarAdvertViewModel>("caradvert", advert);
+                putTask.Wait();
+
+                var result = putTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("Index");
+                }
+            }
+            return View(advert);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:63915/api/");
+
+                //HTTP DELETE
+                var deleteTask = client.DeleteAsync("caradvert/" + id.ToString());
+                deleteTask.Wait();
+
+                var result = deleteTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
