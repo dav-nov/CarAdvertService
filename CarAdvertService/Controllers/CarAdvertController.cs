@@ -81,7 +81,6 @@ namespace CarAdvertService.Controllers
             {
                 // NotFound
             }
-
         }
 
         // DELETE api/caradvert/5

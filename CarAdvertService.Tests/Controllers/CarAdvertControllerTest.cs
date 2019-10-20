@@ -23,7 +23,7 @@ namespace CarAdvertService.Tests.Controllers
             new CarAdvertViewModel(6) {Title = "Mercedes CLK", Fuel = 0, Price = 12000, New = true, Mileage = 150000, FirstRegistration = DateTime.Parse("06.06.2006")},
         };
 
-
+        #region GET
         [TestMethod]
         public void Get()
         {
@@ -78,17 +78,22 @@ namespace CarAdvertService.Tests.Controllers
             // Assert
             Assert.AreEqual(TestAdvertList.ElementAtOrDefault(4), result);
         }
+        #endregion GET
+
 
         [TestMethod]
         public void Post()
         {
             // Arrange
             CarAdvertController controller = new CarAdvertController();
-
+            controller.DummyAdvertList = TestAdvertList.ToList();
             // Act
-            controller.PostAdvert(new CarAdvertViewModel());
-
+            CarAdvertViewModel newAdvert = new CarAdvertViewModel(7);
+            controller.PostAdvert(newAdvert);
+            IEnumerable<CarAdvertViewModel> result = controller.GetAll();
             // Assert
+            Assert.AreEqual(7, result.Count());
+            Assert.AreEqual(newAdvert.Title, result.ElementAt(6).Title);
         }
 
         [TestMethod]
@@ -96,11 +101,14 @@ namespace CarAdvertService.Tests.Controllers
         {
             // Arrange
             CarAdvertController controller = new CarAdvertController();
-
+            controller.DummyAdvertList = TestAdvertList.ToList();
             // Act
-            controller.PutAdvert(5, new CarAdvertViewModel(5));
-
+            CarAdvertViewModel putAdvert = new CarAdvertViewModel(5);
+            controller.PutAdvert(5, putAdvert);
+            IEnumerable<CarAdvertViewModel> result = controller.GetAll();
             // Assert
+            Assert.AreEqual(6, result.Count());
+            Assert.AreEqual(putAdvert.Title, result.ElementAt(4).Title);
         }
 
         [TestMethod]
@@ -108,11 +116,16 @@ namespace CarAdvertService.Tests.Controllers
         {
             // Arrange
             CarAdvertController controller = new CarAdvertController();
-
+            controller.DummyAdvertList = TestAdvertList.ToList();
             // Act
-            controller.DeleteAdvert(5);
-
+            CarAdvertViewModel oldAdvertOne = controller.GetAdvertById(1);
+            CarAdvertViewModel oldAdvertTwo = controller.GetAdvertById(2);
+            controller.DeleteAdvert(1);
+            IEnumerable<CarAdvertViewModel> result = controller.GetAll();
             // Assert
+            Assert.AreEqual(5, result.Count());
+            Assert.AreNotEqual(oldAdvertOne, result.ElementAt(0));
+            Assert.AreEqual(oldAdvertTwo, result.ElementAt(0));
         }
     }
 }
