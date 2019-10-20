@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CarAdvertService;
 using CarAdvertService.Controllers;
 
 namespace CarAdvertService.Tests.Controllers

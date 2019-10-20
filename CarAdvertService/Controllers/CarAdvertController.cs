@@ -9,14 +9,11 @@ namespace CarAdvertService.Controllers
     [EnableCorsAttribute("*", "*", "*")]
     public class CarAdvertController : ApiController
     {
+        #region private fields
         // dummy data for testing purposes
         private List<CarAdvertViewModel> _dummyAdvertList;
         private PropertyHelper _propertyHelper;
-        public List<CarAdvertViewModel> DummyAdvertList
-        {
-            get { return _dummyAdvertList; }
-            set { _dummyAdvertList = value; }
-        }
+        #endregion private fields
 
         #region ctor
         public CarAdvertController()
@@ -26,11 +23,34 @@ namespace CarAdvertService.Controllers
         }
         #endregion
 
+        #region properties
+        /// <summary>
+        /// Dummy advert data for testing purposes.
+        /// Can be set from Test unit or from context.
+        /// </summary>
+        public List<CarAdvertViewModel> DummyAdvertList
+        {
+            get { return _dummyAdvertList; }
+            set { _dummyAdvertList = value; }
+        }
+        #endregion properties
+
+        #region public methods
         // GET api/caradvert
+        /// <summary>
+        /// Returns sorted list of all <see cref="CarAdvertViewModel"/> data.
+        /// </summary>
+        /// <param name="sortby">Optional param - defines the property, depending on which, 
+        /// <see cref="CarAdvertViewModel"/> should be sorted. In case of no param value </param>
+        /// Id property is used.
+        /// <returns>Sorted list of all <see cref="CarAdvertViewModel"/> data</returns>
         public IEnumerable<CarAdvertViewModel> GetAll(string sortby = null)
         {
             // This will be used if DB connection failed
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
+
+            if (string.IsNullOrEmpty(sortby))
+                sortby = "id";
 
             return advertLst.OrderBy(x => _propertyHelper.GetProperty(x, sortby)).ToList(); ;
         }
@@ -47,7 +67,7 @@ namespace CarAdvertService.Controllers
         // POST api/caradvert
         public IHttpActionResult PostAdvert([FromBody]CarAdvertViewModel advert)
         {
-            if (!ModelState.IsValid)
+            if (false == ModelState.IsValid)
                 return BadRequest("Not a valid model");
 
             // This will be used if DB connection failed
@@ -62,13 +82,13 @@ namespace CarAdvertService.Controllers
                 New = advert.New,
                 Mileage = advert.New ? null : advert.Mileage,
                 FirstRegistration = advert.New ? null : advert.FirstRegistration
-        });
+            });
 
             return Ok();
         }
 
         // PUT api/caradvert/5
-        public void PutAdvert(int id, [FromBody]CarAdvertViewModel advert)
+        public IHttpActionResult PutAdvert(int id, [FromBody]CarAdvertViewModel advert)
         {
             // This will be used if DB connection failed
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
@@ -86,13 +106,15 @@ namespace CarAdvertService.Controllers
             }
             else
             {
-                // NotFound
+                return NotFound();
             }
+
+            return Ok();
         }
 
         public IHttpActionResult Put(CarAdvertViewModel advert)
         {
-            if (!ModelState.IsValid)
+            if (false == ModelState.IsValid)
                 return BadRequest("Not a valid data");
 
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
@@ -133,20 +155,6 @@ namespace CarAdvertService.Controllers
 
             return Ok();
         }
-
-        #region private methods
-        /// <summary>
-        /// Creates dummy data for testing purposes
-        /// </summary>
-        /// <returns>List of <list type="CarAdvertViewModel"></list></returns>
-        private List<CarAdvertViewModel> createDummyData()
-        {
-            List<CarAdvertViewModel> advertLst = new List<CarAdvertViewModel>();
-            for (int i = 1; i < 10; i++)
-                advertLst.Add(new CarAdvertViewModel(i));
-
-            return advertLst;
-        }
-        #endregion
+        #endregion public methods
     }
 }
