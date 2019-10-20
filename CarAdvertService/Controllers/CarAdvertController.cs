@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using CarAdvertService.Controllers.HelperClasses;
 
 namespace CarAdvertService.Controllers
 {
+    [EnableCorsAttribute("*", "*", "*")]
     public class CarAdvertController : ApiController
     {
         // dummy data for testing purposes
