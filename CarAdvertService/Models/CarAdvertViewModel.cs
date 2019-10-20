@@ -18,7 +18,7 @@ namespace CarAdvertService.Controllers
             Price = Id * 1000;
             New = id % 2 == 0;
             Mileage = New ? 0 : 100000 - (Id * 900);
-            FirstRegistration = New ? DateTime.MinValue : DateTime.Today.AddYears(-Id);
+            FirstRegistration = New ? (DateTime?)null : DateTime.Today.AddYears(-Id);
         }
         [Required]
         [DataMember]
@@ -39,7 +39,8 @@ namespace CarAdvertService.Controllers
         [DataMember]
         public int? Mileage { get; set; }
         [DataMember]
-        [JsonProperty(PropertyName = "First registration")]
+        [Display(Name = "First registration")]
+        [JsonProperty(PropertyName = "First registration", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? FirstRegistration { get; set; }
     }
 }
