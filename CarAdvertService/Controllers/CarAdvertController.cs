@@ -27,6 +27,7 @@ namespace CarAdvertService.Controllers
         // GET api/caradvert
         public IEnumerable<CarAdvertViewModel> GetAll(string sortby = null)
         {
+            // This will be used if DB connection failed
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
 
 
