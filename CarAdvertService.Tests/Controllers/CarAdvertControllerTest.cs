@@ -20,7 +20,7 @@ namespace CarAdvertService.Tests.Controllers
             CarAdvertController controller = new CarAdvertController();
 
             // Act
-            IEnumerable<CarAdvert> result = controller.GetAll();
+            IEnumerable<CarAdvertViewModel> result = controller.GetAll();
 
             // Assert
             Assert.IsNotNull(result);
@@ -36,10 +36,10 @@ namespace CarAdvertService.Tests.Controllers
             CarAdvertController controller = new CarAdvertController();
 
             // Act
-            CarAdvert result = controller.GetAdvertById(5);
+            CarAdvertViewModel result = controller.GetAdvertById(5);
 
             // Assert
-            Assert.AreEqual("value", result);
+            Assert.AreEqual(5, result.Id);
         }
 
         [TestMethod]
@@ -49,7 +49,7 @@ namespace CarAdvertService.Tests.Controllers
             CarAdvertController controller = new CarAdvertController();
 
             // Act
-            controller.Post("value");
+            controller.PostAdvert(new CarAdvertViewModel());
 
             // Assert
         }
@@ -61,7 +61,7 @@ namespace CarAdvertService.Tests.Controllers
             CarAdvertController controller = new CarAdvertController();
 
             // Act
-            controller.Put(5, "value");
+            controller.PutAdvert(5, new CarAdvertViewModel(5));
 
             // Assert
         }
@@ -73,7 +73,7 @@ namespace CarAdvertService.Tests.Controllers
             CarAdvertController controller = new CarAdvertController();
 
             // Act
-            controller.Delete(5);
+            controller.DeleteAdvert(5);
 
             // Assert
         }

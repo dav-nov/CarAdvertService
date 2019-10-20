@@ -9,34 +9,34 @@ namespace CarAdvertService.Controllers
 {
     public class CarAdvertController : ApiController
     {
-        // GET api/values
-        public IEnumerable<CarAdvert> GetAll(string sortby = null)
+        // GET api/caradvert
+        public IEnumerable<CarAdvertViewModel> GetAll(string sortby = null)
         {
-            List<CarAdvert> advertLst = new List<CarAdvert>();
+            List<CarAdvertViewModel> advertLst = new List<CarAdvertViewModel>();
             for (int i = 1; i < 10; i++)
-                advertLst.Add(new CarAdvert(i));
+                advertLst.Add(new CarAdvertViewModel(i));
             
             return advertLst;
         }
 
-        // GET api/values/5
-        public CarAdvert GetAdvertById(int id)
+        // GET api/caradvert/5
+        public CarAdvertViewModel GetAdvertById(int id)
         {
-            return new CarAdvert();
+            return new CarAdvertViewModel();
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        // POST api/caradvert
+        public void PostAdvert([FromBody]CarAdvertViewModel advert)
         {
         }
 
-        // DELETE api/values/5
-        public void Delete(int id)
+        // PUT api/caradvert/5
+        public void PutAdvert(int id, [FromBody]CarAdvertViewModel advert)
+        {
+        }
+
+        // DELETE api/caradvert/5
+        public void DeleteAdvert(int id)
         {
         }
     }
