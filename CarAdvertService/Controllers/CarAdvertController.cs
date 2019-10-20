@@ -58,9 +58,9 @@ namespace CarAdvertService.Controllers
                 Fuel = advert.Fuel,
                 Price = advert.Price,
                 New = advert.New,
-                Mileage = advert.Mileage,
-                FirstRegistration = advert.FirstRegistration
-            });
+                Mileage = advert.New ? null : advert.Mileage,
+                FirstRegistration = advert.New ? null : advert.FirstRegistration
+        });
 
             return Ok();
         }
@@ -79,8 +79,8 @@ namespace CarAdvertService.Controllers
                 existingAdvert.Fuel = advert.Fuel;
                 existingAdvert.Price = advert.Price;
                 existingAdvert.New = advert.New;
-                existingAdvert.Mileage = advert.Mileage;
-                existingAdvert.FirstRegistration = advert.FirstRegistration;
+                existingAdvert.Mileage = advert.New ? null : advert.Mileage;
+                existingAdvert.FirstRegistration = advert.New ? null : advert.FirstRegistration;
             }
             else
             {
@@ -103,8 +103,8 @@ namespace CarAdvertService.Controllers
                 existingAdvert.Fuel = advert.Fuel;
                 existingAdvert.Price = advert.Price;
                 existingAdvert.New = advert.New;
-                existingAdvert.Mileage = advert.Mileage;
-                existingAdvert.FirstRegistration = advert.FirstRegistration;
+                existingAdvert.Mileage = advert.New ? null : advert.Mileage;
+                existingAdvert.FirstRegistration = advert.New ? null : advert.FirstRegistration;
             }
             else
             {
