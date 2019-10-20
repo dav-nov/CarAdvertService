@@ -43,8 +43,11 @@ namespace CarAdvertService.Controllers
         }
 
         // POST api/caradvert
-        public void PostAdvert([FromBody]CarAdvertViewModel advert)
+        public IHttpActionResult PostAdvert([FromBody]CarAdvertViewModel advert)
         {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid model");
+
             // This will be used if DB connection failed
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
 
@@ -58,6 +61,8 @@ namespace CarAdvertService.Controllers
                 Mileage = advert.Mileage,
                 FirstRegistration = advert.FirstRegistration
             });
+
+            return Ok();
         }
 
         // PUT api/caradvert/5
@@ -83,16 +88,48 @@ namespace CarAdvertService.Controllers
             }
         }
 
+        public IHttpActionResult Put(CarAdvertViewModel advert)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Not a valid data");
+
+            List<CarAdvertViewModel> advertLst = DummyAdvertList;
+
+            CarAdvertViewModel existingAdvert = advertLst.Where(x => x.Id == advert.Id).FirstOrDefault();
+
+            if (existingAdvert != null)
+            {
+                existingAdvert.Title = advert.Title;
+                existingAdvert.Fuel = advert.Fuel;
+                existingAdvert.Price = advert.Price;
+                existingAdvert.New = advert.New;
+                existingAdvert.Mileage = advert.Mileage;
+                existingAdvert.FirstRegistration = advert.FirstRegistration;
+            }
+            else
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
+
         // DELETE api/caradvert/5
-        public void DeleteAdvert(int id)
+        public IHttpActionResult DeleteAdvert(int id)
         {
             // This will be used if DB connection failed
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
 
             CarAdvertViewModel advert = advertLst.Where(a => a.Id == id).FirstOrDefault();
 
+            if (id <= 0 || advert == null)
+                return BadRequest("Not a valid advert id");
+
             if (advert != null)
                 advertLst.Remove(advert);
+
+            return Ok();
         }
 
         #region private methods
