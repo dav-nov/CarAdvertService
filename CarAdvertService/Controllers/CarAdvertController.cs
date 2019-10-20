@@ -7,18 +7,22 @@ using System.Web.Http;
 
 namespace CarAdvertService.Controllers
 {
-    public class ValuesController : ApiController
+    public class CarAdvertController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public IEnumerable<CarAdvert> GetAll(string sortby = null)
         {
-            return new string[] { "value1", "value2" };
+            List<CarAdvert> advertLst = new List<CarAdvert>();
+            for (int i = 1; i < 10; i++)
+                advertLst.Add(new CarAdvert(i));
+            
+            return advertLst;
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public CarAdvert GetAdvertById(int id)
         {
-            return "value";
+            return new CarAdvert();
         }
 
         // POST api/values

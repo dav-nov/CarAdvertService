@@ -11,16 +11,16 @@ using CarAdvertService.Controllers;
 namespace CarAdvertService.Tests.Controllers
 {
     [TestClass]
-    public class ValuesControllerTest
+    public class CarAdvertControllerTest
     {
         [TestMethod]
         public void Get()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            CarAdvertController controller = new CarAdvertController();
 
             // Act
-            IEnumerable<string> result = controller.Get();
+            IEnumerable<CarAdvert> result = controller.GetAll();
 
             // Assert
             Assert.IsNotNull(result);
@@ -33,10 +33,10 @@ namespace CarAdvertService.Tests.Controllers
         public void GetById()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            CarAdvertController controller = new CarAdvertController();
 
             // Act
-            string result = controller.Get(5);
+            CarAdvert result = controller.GetAdvertById(5);
 
             // Assert
             Assert.AreEqual("value", result);
@@ -46,7 +46,7 @@ namespace CarAdvertService.Tests.Controllers
         public void Post()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            CarAdvertController controller = new CarAdvertController();
 
             // Act
             controller.Post("value");
@@ -58,7 +58,7 @@ namespace CarAdvertService.Tests.Controllers
         public void Put()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            CarAdvertController controller = new CarAdvertController();
 
             // Act
             controller.Put(5, "value");
@@ -70,7 +70,7 @@ namespace CarAdvertService.Tests.Controllers
         public void Delete()
         {
             // Arrange
-            ValuesController controller = new ValuesController();
+            CarAdvertController controller = new CarAdvertController();
 
             // Act
             controller.Delete(5);
