@@ -31,10 +31,7 @@ namespace CarAdvertService.Controllers
                 }
                 else //web api sent error response 
                 {
-                    //log response status here..
-
                     adverts = Enumerable.Empty<CarAdvertViewModel>();
-
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
             }
