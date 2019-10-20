@@ -48,6 +48,16 @@ namespace CarAdvertService.Controllers
             // This will be used if DB connection failed
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
 
+            advertLst.Add(new CarAdvertViewModel()
+            {
+                Id = advertLst.Count() + 1,
+                Title = advert.Title,
+                Fuel = advert.Fuel,
+                Price = advert.Price,
+                New = advert.New,
+                Mileage = advert.Mileage,
+                FirstRegistration = advert.FirstRegistration
+            });
         }
 
         // PUT api/caradvert/5
@@ -55,6 +65,22 @@ namespace CarAdvertService.Controllers
         {
             // This will be used if DB connection failed
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
+
+            CarAdvertViewModel existingAdvert = advertLst.Where(x => x.Id == advert.Id).FirstOrDefault();
+
+            if (existingAdvert != null)
+            {
+                existingAdvert.Title = advert.Title;
+                existingAdvert.Fuel = advert.Fuel;
+                existingAdvert.Price = advert.Price;
+                existingAdvert.New = advert.New;
+                existingAdvert.Mileage = advert.Mileage;
+                existingAdvert.FirstRegistration = advert.FirstRegistration;
+            }
+            else
+            {
+                // NotFound
+            }
 
         }
 
@@ -64,7 +90,10 @@ namespace CarAdvertService.Controllers
             // This will be used if DB connection failed
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
 
+            CarAdvertViewModel advert = advertLst.Where(a => a.Id == id).FirstOrDefault();
 
+            if (advert != null)
+                advertLst.Remove(advert);
         }
 
         #region private methods
