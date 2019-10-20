@@ -9,12 +9,12 @@ namespace CarAdvertService.Controllers
         public CarAdvertViewModel(int? id = null)
         {
             Id = id ?? 1;
-            Title = "Car " + Id.ToString();
-            Fuel = 1;
+            Title = "Car Advert " + Id.ToString();
+            Fuel = id % 2 == 0 ? 1 : 2;
             Price = Id * 1000;
-            New = false;
-            Mileage = 100000 - (Id * 1000);
-            FirstRegistration = DateTime.Today.AddYears(-Id);
+            New = id % 2 == 0;
+            Mileage = New ? 0 : 100000 - (Id * 900);
+            FirstRegistration = New ? DateTime.MinValue : DateTime.Today.AddYears(-Id);
         }
 
         [DataMember]

@@ -39,7 +39,7 @@ namespace CarAdvertService.Controllers
             // This will be used if DB connection failed
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
 
-            return new CarAdvertViewModel();
+            return advertLst.FirstOrDefault(x => x.Id == id);
         }
 
         // POST api/caradvert
