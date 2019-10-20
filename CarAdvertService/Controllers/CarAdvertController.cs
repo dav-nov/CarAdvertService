@@ -9,13 +9,27 @@ namespace CarAdvertService.Controllers
 {
     public class CarAdvertController : ApiController
     {
+        // dummy data for testing purposes
+        private List<CarAdvertViewModel> _dummyAdvertList;
+        public List<CarAdvertViewModel> DummyAdvertList
+        {
+            get { return _dummyAdvertList; }
+            set { _dummyAdvertList = value; }
+        }
+
+        #region ctor
+        public CarAdvertController()
+        {
+            _dummyAdvertList = createDummyData();
+        }
+        #endregion
+
         // GET api/caradvert
         public IEnumerable<CarAdvertViewModel> GetAll(string sortby = null)
         {
-            List<CarAdvertViewModel> advertLst = new List<CarAdvertViewModel>();
-            for (int i = 1; i < 10; i++)
-                advertLst.Add(new CarAdvertViewModel(i));
-            
+            List<CarAdvertViewModel> advertLst = DummyAdvertList;
+
+
             return advertLst;
         }
 
@@ -39,5 +53,20 @@ namespace CarAdvertService.Controllers
         public void DeleteAdvert(int id)
         {
         }
+
+        #region private methods
+        /// <summary>
+        /// Creates dummy data for testing purposes
+        /// </summary>
+        /// <returns>List of <list type="CarAdvertViewModel"></list></returns>
+        private List<CarAdvertViewModel> createDummyData()
+        {
+            List<CarAdvertViewModel> advertLst = new List<CarAdvertViewModel>();
+            for (int i = 1; i < 10; i++)
+                advertLst.Add(new CarAdvertViewModel(i));
+
+            return advertLst;
+        }
+        #endregion
     }
 }
