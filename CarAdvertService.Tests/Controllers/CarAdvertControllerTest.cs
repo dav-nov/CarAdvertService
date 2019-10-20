@@ -11,12 +11,12 @@ namespace CarAdvertService.Tests.Controllers
     {
         public IEnumerable<CarAdvertViewModel> TestAdvertList = new CarAdvertViewModel[]
         {
-            new CarAdvertViewModel(1) {Title = "BMW X7", Fuel = 1, Price = 90000, New = true, Mileage = null, FirstRegistration = null},
-            new CarAdvertViewModel(2) {Title = "Porsche 911", Fuel = 0, Price = 120000, New = true, Mileage = 70000, FirstRegistration = DateTime.Parse("12.12.2012")},
-            new CarAdvertViewModel(3) {Title = "Fiat Panda", Fuel = 1, Price = 2000, New = true, Mileage = 65000, FirstRegistration = DateTime.Parse("01.05.2008")},
-            new CarAdvertViewModel(4) {Title = "VW Sharan", Fuel = 0, Price = 7000, New = true, Mileage = 195000, FirstRegistration = DateTime.Parse("10.10.2000")},
-            new CarAdvertViewModel(5) {Title = "Audi A4 Avant", Fuel = 1, Price = 75000, New = true, Mileage = null, FirstRegistration = null},
-            new CarAdvertViewModel(6) {Title = "Mercedes CLK", Fuel = 0, Price = 12000, New = true, Mileage = 150000, FirstRegistration = DateTime.Parse("06.06.2006")},
+            new CarAdvertViewModel(1) {Title = "BMW X7", Fuel = Models.FuelType.Gasoline, Price = 90000, New = true, Mileage = null, FirstRegistration = null},
+            new CarAdvertViewModel(2) {Title = "Porsche 911", Fuel = Models.FuelType.Diesel, Price = 120000, New = true, Mileage = 70000, FirstRegistration = DateTime.Parse("12.12.2012")},
+            new CarAdvertViewModel(3) {Title = "Fiat Panda", Fuel = Models.FuelType.Gasoline, Price = 2000, New = true, Mileage = 65000, FirstRegistration = DateTime.Parse("01.05.2008")},
+            new CarAdvertViewModel(4) {Title = "VW Sharan", Fuel = Models.FuelType.Diesel, Price = 7000, New = true, Mileage = 195000, FirstRegistration = DateTime.Parse("10.10.2000")},
+            new CarAdvertViewModel(5) {Title = "Audi A4 Avant", Fuel = Models.FuelType.Gasoline, Price = 75000, New = true, Mileage = null, FirstRegistration = null},
+            new CarAdvertViewModel(6) {Title = "Mercedes CLK", Fuel = Models.FuelType.Diesel, Price = 12000, New = true, Mileage = 150000, FirstRegistration = DateTime.Parse("06.06.2006")},
         };
 
         #region GET

@@ -26,7 +26,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Fuel, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Fuel, new { htmlAttributes = new { @class = "form-control" } })
+                @{
+                    List<SelectListItem> listItems = new List<SelectListItem>();
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Gasoline",
+                        Value = "0"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Diesel",
+                        Value = "1",
+                    });
+                }
+
+                @Html.DropDownList("Fuel", listItems, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Fuel, "", new { @class = "text-danger" })
             </div>
         </div>
