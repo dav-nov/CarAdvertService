@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CarAdvertService.Controllers.HelperClasses;
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -36,8 +37,10 @@ namespace CarAdvertService.Controllers
         [Required]
         [DataMember]
         public bool New { get; set; }
+        [RequiredDependentOnNewAttribute]
         [DataMember]
         public int? Mileage { get; set; }
+        [RequiredDependentOnNewAttribute]
         [DataMember]
         [Display(Name = "First registration")]
         [JsonProperty(PropertyName = "First registration", NullValueHandling = NullValueHandling.Ignore)]
