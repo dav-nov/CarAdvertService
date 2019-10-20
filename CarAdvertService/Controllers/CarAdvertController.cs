@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using CarAdvertService.Controllers.HelperClasses;
 
 namespace CarAdvertService.Controllers
 {
@@ -11,6 +9,7 @@ namespace CarAdvertService.Controllers
     {
         // dummy data for testing purposes
         private List<CarAdvertViewModel> _dummyAdvertList;
+        private PropertyHelper _propertyHelper;
         public List<CarAdvertViewModel> DummyAdvertList
         {
             get { return _dummyAdvertList; }
@@ -21,6 +20,7 @@ namespace CarAdvertService.Controllers
         public CarAdvertController()
         {
             _dummyAdvertList = createDummyData();
+            _propertyHelper = new PropertyHelper();
         }
         #endregion
 
@@ -30,29 +30,41 @@ namespace CarAdvertService.Controllers
             // This will be used if DB connection failed
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
 
-
-            return advertLst;
+            return advertLst.OrderBy(x => _propertyHelper.GetProperty(x, sortby)).ToList(); ;
         }
 
         // GET api/caradvert/5
         public CarAdvertViewModel GetAdvertById(int id)
         {
+            // This will be used if DB connection failed
+            List<CarAdvertViewModel> advertLst = DummyAdvertList;
+
             return new CarAdvertViewModel();
         }
 
         // POST api/caradvert
         public void PostAdvert([FromBody]CarAdvertViewModel advert)
         {
+            // This will be used if DB connection failed
+            List<CarAdvertViewModel> advertLst = DummyAdvertList;
+
         }
 
         // PUT api/caradvert/5
         public void PutAdvert(int id, [FromBody]CarAdvertViewModel advert)
         {
+            // This will be used if DB connection failed
+            List<CarAdvertViewModel> advertLst = DummyAdvertList;
+
         }
 
         // DELETE api/caradvert/5
         public void DeleteAdvert(int id)
         {
+            // This will be used if DB connection failed
+            List<CarAdvertViewModel> advertLst = DummyAdvertList;
+
+
         }
 
         #region private methods

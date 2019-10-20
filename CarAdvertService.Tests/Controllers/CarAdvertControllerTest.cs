@@ -32,7 +32,6 @@ namespace CarAdvertService.Tests.Controllers
             controller.DummyAdvertList = TestAdvertList;
             // Act
             IEnumerable<CarAdvertViewModel> result = controller.GetAll();
-
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(6, result.Count());
@@ -48,7 +47,6 @@ namespace CarAdvertService.Tests.Controllers
             controller.DummyAdvertList = TestAdvertList;
             // Act
             CarAdvertViewModel result = controller.GetAdvertById(5);
-
             // Assert
             Assert.AreEqual(TestAdvertList.ElementAtOrDefault(5), result.Id);
         }
