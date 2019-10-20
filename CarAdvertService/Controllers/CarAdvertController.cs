@@ -19,7 +19,7 @@ namespace CarAdvertService.Controllers
         #region ctor
         public CarAdvertController()
         {
-            _dummyAdvertList = createDummyData();
+            _dummyAdvertList = StaticContext.Instance.DummyAdvertList;
             _propertyHelper = new PropertyHelper();
         }
         #endregion
@@ -48,7 +48,7 @@ namespace CarAdvertService.Controllers
             // This will be used if DB connection failed
             List<CarAdvertViewModel> advertLst = DummyAdvertList;
 
-            advertLst.Add(new CarAdvertViewModel()
+            DummyAdvertList.Add(new CarAdvertViewModel()
             {
                 Id = advertLst.Count() + 1,
                 Title = advert.Title,
