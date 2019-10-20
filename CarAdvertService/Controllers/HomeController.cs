@@ -45,5 +45,28 @@ namespace CarAdvertService.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult create(CarAdvertViewModel advert)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:63915/api/caradvert/");
+
+                //HTTP POST
+                var postTask = client.PostAsJsonAsync<CarAdvertViewModel>("caradvert", advert);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+            return View(advert);
+        }
     }
 }

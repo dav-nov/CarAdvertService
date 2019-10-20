@@ -6,6 +6,8 @@ namespace CarAdvertService.Controllers
     [DataContract]
     public class CarAdvertViewModel
     {
+        public CarAdvertViewModel() { }
+
         public CarAdvertViewModel(int? id = null)
         {
             Id = id ?? 1;
